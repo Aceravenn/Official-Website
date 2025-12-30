@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Official Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Our Official Website</h2>
+        <button onclick="showTab('Memories')">Memories</button>
+        <button onclick="showTab('Letters')">Letters</button>
+        <button onclick="showTab('Bucket List')">Bucket List</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <header>
+            <h1 id="tabTitle">Memories</h1>
+            <div class="header-controls">
+                <select class="sortBox" id="sortDate">
+                    <option value="day">Day</option>
+                    <option value="month">Month</option>
+                    <option value="year">Year</option>
+                </select>
+                <button class="addMainBtn" onclick="openModal()">Add Item</button>
+            </div>
+        </header>
+        <div id="listArea"></div>
+    </div>
+</div>
+
+<!-- Add Item Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modalTitle">Add Memories</h2>
+
+    <!-- Memory Input -->
+    <div id="memoryInput" class="inputSection">
+      <label for="memoryTitle">Title</label>
+      <input type="text" id="memoryTitle" placeholder="Enter title for this memory item">
+      <label for="memoryDesc">Description</label>
+      <textarea id="memoryDesc" placeholder="Enter description for this memory item..."></textarea>
+      <label for="memoryDate">Date</label>
+      <input type="date" id="memoryDate">
+      <label for="memoryFile">Select Images</label>
+      <input type="file" id="memoryFile" accept="image/png, image/jpeg, image/webp" multiple onchange="previewAddImages(this)">
+      <div id="addPreview" class="overlay-photos"></div>
+    </div>
+
+    <!-- Letters Input -->
+    <div id="textInput" class="inputSection">
+      <label for="lettersTitle">Title</label>
+      <input type="text" id="lettersTitle" placeholder="Enter title for this letter">
+      <label for="lettersDesc">Description</label>
+      <textarea id="lettersDesc" placeholder="Enter description for this letter..."></textarea>
+      <label for="inputText">Text</label>
+      <textarea id="lettersText" placeholder="Write your letter here..."></textarea>
+    </div>
+
+    <!-- Bucket List Input -->
+    <div id="bucketInput" class="inputSection">
+      <label for="bucketText">Text</label>
+      <input type="text" id="bucketText" placeholder="Enter bucket list name">
+      <label for="bucketDesc">Description</label>
+      <textarea id="bucketDesc" placeholder="Enter description for this bucket list!"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="saveBtn" onclick="saveModalChanges()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Item Overlay Modal -->
+<div id="itemOverlay" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeItemOverlay()">×</button>
+    <h2 id="overlayTitle"></h2>
+    <div id="overlayDescription" class="description"></div>
+    <div id="overlayText"></div>
+    <div id="overlayImages" class="overlay-photos"></div>
+    <div id="overlayDate" class="date"></div>
+    <div id="overlayActions" class="overlay-actions"></div>
+  </div>
+</div>
+
+<!-- Edit Item Modal -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeEditModal()">×</button>
+    <h2>Edit Item</h2>
+    <div class="inputSection">
+        <label for="editName">Edit Name</label>
+        <input type="text" id="editName">
+        <label for="editDate">Completed Date (Bucket List)</label>
+        <input type="date" id="editDate">
+        <label for="editPhotoFile">Add Photos</label>
+        <input type="file" id="editPhotoFile" accept="image/png, image/jpeg, image/webp" multiple onchange="previewEditImages(this)">
+        <div id="editPhotosContainer" class="overlay-photos"></div>
+    </div>
+    <div class="modal-actions">
+      <button onclick="saveEditItem()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
